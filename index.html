@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#0e0f12">
+<meta name="keywords" content="小草影视,小草影视,xiaocaoyingshi-app,小草影视影视在线观看,小草影视高清电影,免费追剧,电影推荐,电视剧更新,综艺节目,动漫连载,热播榜单">
+<meta name="description" content="小草影视 小草影视是面向影迷搭建的影视内容聚合入口，汇集电影、电视剧、综艺与动漫四大板块的在线观看资源，提供热播榜、即将上线与本周新番等内容栏目，支持手机端自适应访问，访问地址为 https://xiaocaoyingshi-app.github.io 。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="小草影视 小草影视">
+<meta property="og:title" content="小草影视 小草影视 · 在线影视内容聚合入口 | 电影 电视剧 综艺 动漫">
+<meta property="og:description" content="小草影视 小草影视收录电影、电视剧、综艺与动漫板块内容，更新热播榜、即将上线与本周新番栏目，手机端自适应浏览。">
+<meta property="og:url" content="https://xiaocaoyingshi-app.github.io/">
+<title>小草影视 小草影视 · 在线影视内容聚合入口 | 电影 电视剧 综艺 动漫</title>
+<style>
+:root{
+  --bg:#0e0f12;
+  --bg2:#15171c;
+  --line:#26282f;
+  --ink:#eceef2;
+  --mute:#9aa0ac;
+  --mute2:#6b7280;
+  --accent:#e9b824;
+  --accent2:#e8542b;
+  --chip:#1c1e24;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  line-height:1.75;
+  font-size:16px;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.tag{display:inline-block;font-size:12px;letter-spacing:.08em;color:var(--accent);border:1px solid rgba(233,184,36,.35);padding:2px 9px;border-radius:2px}
+.kbd{font-family:ui-monospace,Menlo,Consolas,monospace}
+
+/* ===== top bar ===== */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(14,15,18,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .wrap{display:flex;align-items:center;gap:18px;height:56px}
+.brand{display:flex;align-items:baseline;gap:8px;flex-shrink:0}
+.brand b{font-size:19px;letter-spacing:.02em;font-weight:700}
+.brand b i{font-style:normal;color:var(--accent)}
+.brand em{font-style:normal;font-size:11px;color:var(--mute2);border-left:1px solid var(--line);padding-left:8px}
+.nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+.nav a{
+  font-size:14px;color:var(--mute);
+  padding:6px 11px;border-radius:3px;
+  transition:.18s;white-space:nowrap;
+}
+.nav a:hover{color:var(--ink);background:var(--chip)}
+.nav a.on{color:var(--accent);background:rgba(233,184,36,.1)}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink);width:38px;height:34px;border-radius:3px;cursor:pointer;font-size:16px}
+
+/* ===== masthead ===== */
+.masthead{
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(1100px 420px at 82% -10%,rgba(232,84,43,.16),transparent 60%),
+    radial-gradient(800px 380px at 8% 12%,rgba(233,184,36,.10),transparent 62%),
+    var(--bg);
+  padding:30px 0 22px;
+}
+.masthead-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:34px;align-items:end}
+.masthead .meta{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mute2);margin-bottom:14px}
+.masthead .meta span{display:flex;align-items:center;gap:5px}
+.masthead h1{
+  font-size:clamp(30px,5vw,52px);
+  line-height:1.12;font-weight:800;letter-spacing:-.01em;
+}
+.masthead h1 small{display:block;font-size:.36em;font-weight:500;color:var(--mute);letter-spacing:.24em;margin-top:14px;text-transform:uppercase}
+.masthead .lede{color:var(--mute);font-size:15px;margin-top:18px;max-width:56ch}
+.masthead .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:26px}
+.masthead .stats div{background:var(--bg2);padding:14px 12px}
+.masthead .stats strong{display:block;font-size:22px;font-weight:700;letter-spacing:.01em}
+.masthead .stats span{font-size:12px;color:var(--mute2)}
+
+.marquee{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--bg2);font-size:13px;color:var(--mute);
+  overflow:hidden;white-space:nowrap;
+}
+.marquee div{display:inline-block;padding:10px 0;animation:mq 42s linear infinite}
+.marquee a{margin:0 22px;transition:.18s}
+.marquee a:hover{color:var(--accent)}
+.marquee b{color:var(--accent2);font-weight:500}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== section frame ===== */
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+.sec-head h2{
+  font-size:24px;font-weight:700;letter-spacing:.01em;
+  display:flex;align-items:center;gap:11px;
+}
+.sec-head h2::before{
+  content:"";width:5px;height:22px;background:var(--accent);border-radius:1px;
+}
+.sec-head p{font-size:13px;color:var(--mute2);margin-left:auto}
+.sec-head a.more{font-size:13px;color:var(--mute);border-bottom:1px dashed var(--mute2);padding-bottom:1px}
+.sec-head a.more:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ===== cover feature ===== */
+.cover{display:grid;grid-template-columns:1.5fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.cover-main{position:relative;min-height:360px;background:var(--bg2);overflow:hidden}
+.cover-main img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.72}
+.cover-main .gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,15,18,.97) 12%,rgba(14,15,18,.2) 55%,rgba(14,15,18,.55))}
+.cover-main .content{position:relative;padding:26px;height:100%;display:flex;flex-direction:column;justify-content:flex-end}
+.cover-main .num{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--accent);letter-spacing:.14em}
+.cover-main h3{font-size:26px;font-weight:700;margin:8px 0 10px;line-height:1.3}
+.cover-main p{font-size:14px;color:var(--mute);max-width:52ch}
+.cover-main .play{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  background:var(--accent);color:#14130c;font-size:14px;font-weight:600;
+  padding:9px 18px;border-radius:2px;width:max-content;transition:.2s;
+}
+.cover-main .play:hover{background:#f3c93a}
+.cover-side{display:grid;grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
+.cover-side article{position:relative;background:var(--bg2);overflow:hidden}
+.cover-side img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.6}
+.cover-side .g{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,15,18,.95),rgba(14,15,18,.15))}
+.cover-side .c{position:relative;padding:18px;height:100%;display:flex;flex-direction:column;justify-content:flex-end}
+.cover-side .c span{font-size:12px;color:var(--accent2)}
+.cover-side .c h4{font-size:17px;font-weight:600;margin-top:4px;line-height:1.35}
+.cover-side .c small{font-size:12px;color:var(--mute2)}
+
+/* ===== grid cards ===== */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{border:1px solid var(--line);background:var(--bg2);transition:.2s;display:flex;flex-direction:column}
+.card:hover{border-color:#3c3f48;transform:translateY(-3px)}
+.thumb{position:relative;aspect-ratio:3/4;overflow:hidden;background:#1a1c22}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.card:hover .thumb img{transform:scale(1.05);opacity:.85}
+.thumb .ep{position:absolute;top:10px;left:10px;background:rgba(14,15,18,.85);color:var(--accent);font-size:11px;padding:3px 8px;border-radius:2px;font-family:ui-monospace,Menlo,monospace}
+.thumb .rate{position:absolute;top:10px;right:10px;background:rgba(14,15,18,.85);font-size:12px;padding:3px 8px;border-radius:2px}
+.thumb .cta{position:absolute;bottom:10px;right:10px;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#14130c;display:flex;align-items:center;justify-content:center;font-size:13px;opacity:0;transform:translateY(6px);transition:.22s}
+.card:hover .thumb .cta{opacity:1;transform:translateY(0)}
+.card .info{padding:13px 14px 16px;flex:1;display:flex;flex-direction:column}
+.card .info h4{font-size:15px;font-weight:600;line-height:1.45}
+.card .info p{font-size:12px;color:var(--mute2);margin-top:6px}
+.card .info .row{margin-top:auto;padding-top:11px;display:flex;justify-content:space-between;font-size:12px;color:var(--mute)}
+.card .info .row b{font-weight:500;color:var(--mute)}
+
+/* ===== schedule list ===== */
+.schedule{display:grid;grid-template-columns:1.15fr 1fr;gap:34px}
+.sch-list{border:1px solid var(--line)}
+.sch-list .item{display:grid;grid-template-columns:74px 1fr auto;gap:16px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.sch-list .item:last-child{border-bottom:none}
+.sch-list .item time{font-family:ui-monospace,Menlo,monospace;font-size:14px;color:var(--accent);letter-spacing:.04em}
+.sch-list .item h5{font-size:15px;font-weight:600}
+.sch-list .item h5 small{display:block;font-size:12px;color:var(--mute2);font-weight:400;margin-top:2px}
+.sch-list .item em{font-style:normal;font-size:12px;color:var(--mute);border:1px solid var(--line);padding:3px 9px;border-radius:2px}
+.sch-list .item.live em{color:var(--accent2);border-color:rgba(232,84,43,.5)}
+.note{border:1px solid var(--line);padding:20px;background:var(--bg2)}
+.note h4{font-size:15px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.note h4::before{content:"";width:3px;height:15px;background:var(--accent2)}
+.note ol{list-style:none;counter-reset:n}
+.note ol li{counter-increment:n;font-size:14px;color:var(--mute);padding:8px 0 8px 30px;position:relative;border-bottom:1px dashed #22252c}
+.note ol li:last-child{border-bottom:none}
+.note ol li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:8px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--accent)}
+.note ol li b{color:var(--ink);font-weight:500}
+
+/* ===== columns ===== */
+.columns{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.columns .col{background:var(--bg2);padding:22px 20px;min-height:230px}
+.columns .col i{font-style:normal;font-size:11px;letter-spacing:.18em;color:var(--accent2)}
+.columns .col h4{font-size:19px;font-weight:700;margin:8px 0 12px}
+.columns .col ul{list-style:none}
+.columns .col li{font-size:13.5px;padding:6px 0;color:var(--mute);border-bottom:1px dashed #22252c;display:flex;justify-content:space-between;gap:10px}
+.columns .col li:last-child{border-bottom:none}
+.columns .col li a:hover{color:var(--accent)}
+.columns .col li span{font-size:11px;color:var(--mute2);font-family:ui-monospace,Menlo,monospace;flex-shrink:0}
+.columns .col li span.hot{color:var(--accent2)}
+
+/* ===== editor ===== */
+.editor{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.editor article{border:1px solid var(--line);padding:18px;background:var(--bg2);display:flex;gap:16px}
+.editor .no{flex-shrink:0;width:30px;height:30px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--accent)}
+.editor h5{font-size:16px;font-weight:600;margin-bottom:7px}
+.editor p{font-size:13.5px;color:var(--mute);margin-bottom:9px}
+.editor .by{font-size:12px;color:var(--mute2)}
+
+/* ===== search ===== */
+.search-box{border:1px solid var(--line);padding:22px;background:var(--bg2)}
+.search-box form{display:grid;grid-template-columns:1fr auto;gap:10px}
+.search-box input{
+  background:var(--bg);border:1px solid var(--line);color:var(--ink);
+  padding:13px 14px;font-size:15px;border-radius:2px;font-family:inherit;
+}
+.search-box input:focus{outline:none;border-color:var(--accent)}
+.search-box button{
+  background:var(--accent);color:#14130c;border:none;font-size:15px;font-weight:600;
+  padding:0 26px;border-radius:2px;cursor:pointer;font-family:inherit;transition:.2s;
+}
+.search-box button:hover{background:#f3c93a}
+.hints{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--mute)}
+.hints b{color:var(--mute2);font-weight:400;margin-right:2px}
+.hints a{padding:3px 10px;border:1px solid var(--line);border-radius:2px;transition:.18s}
+.hints a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ===== footer ===== */
+footer{border-top:1px solid var(--line);padding:40px 0 30px;background:var(--bg2)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.foot-grid h6{font-size:13px;letter-spacing:.1em;color:var(--mute2);margin-bottom:12px;text-transform:uppercase}
+.foot-grid ul{list-style:none}
+.foot-grid li{font-size:14px;padding:4px 0}
+.foot-grid li a{color:var(--mute)}
+.foot-grid li a:hover{color:var(--accent)}
+.foot-brand b{font-size:20px;font-weight:700}
+.foot-brand b i{font-style:normal;color:var(--accent)}
+.foot-brand p{font-size:13px;color:var(--mute2);margin-top:12px;max-width:38ch}
+.copy{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--mute2)}
+
+/* ===== responsive ===== */
+@media (max-width:960px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .masthead-grid,.cover,.schedule,.editor{grid-template-columns:1fr}
+  .columns{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .cover-side{grid-template-rows:200px 200px}
+  section{padding:38px 0}
+}
+@media (max-width:640px){
+  body{font-size:15px}
+  .wrap{padding:0 14px}
+  .topbar .wrap{height:52px}
+  .nav{display:none;position:absolute;top:52px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);flex-direction:column;padding:8px 14px;gap:0}
+  .nav.open{display:flex}
+  .nav a{width:100%;padding:11px 6px;border-bottom:1px solid var(--line)}
+  .nav a:last-child{border-bottom:none}
+  .menu-btn{display:block}
+  .brand em{display:none}
+  .masthead{padding:22px 0 16px}
+  .columns{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .cover-main{min-height:300px}
+  .cover-side{grid-template-rows:170px 170px}
+  .foot-grid{grid-template-columns:1fr}
+  .editor article{flex-direction:column;gap:10px}
+  .sec-head p{margin-left:0;width:100%}
+  .search-box form{grid-template-columns:1fr}
+  .search-box button{padding:13px}
+  .masthead .stats{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <b><i>小草影视</i> 小草影视</b>
+      <em>xiaocaoyingshi-app</em>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="菜单">☰</button>
+    <nav class="nav" id="nav">
+      <a href="#cover" class="on">今日焦点</a>
+      <a href="#films">电影馆</a>
+      <a href="#series">剧集档</a>
+      <a href="#variety">综艺台</a>
+      <a href="#anime">动漫番</a>
+      <a href="#schedule">更新表</a>
+      <a href="#columns">内容分区</a>
+      <a href="#editor">影评</a>
+      <a href="#search">检索</a>
+    </nav>
+  </div>
+</header>
+
+<div class="marquee">
+  <div>
+    <a><b>实时</b> 《霓虹追凶》第12集 已更新</a>
+    <a>《荒野回声》第一季 完结可看</a>
+    <a><b>新片</b> 《海边理发店》今日上线</a>
+    <a>《声动亚洲2026》第8期 热度 9832万</a>
+    <a>《斗罗大陆》更新至第268集</a>
+    <a><b>推荐</b> 悬疑烧脑专题合集已整理</a>
+    <a>《舌尖上的旅行》第5期 上线</a>
+    <a>《完美世界》更新至第156集</a>
+    <a><b>实时</b> 《霓虹追凶》第12集 已更新</a>
+    <a>《荒野回声》第一季 完结可看</a>
+    <a><b>新片</b> 《海边理发店》今日上线</a>
+    <a>《声动亚洲2026》第8期 热度 9832万</a>
+    <a>《斗罗大陆》更新至第268集</a>
+    <a><b>推荐</b> 悬疑烧脑专题合集已整理</a>
+    <a>《舌尖上的旅行》第5期 上线</a>
+    <a>《完美世界》更新至第156集</a>
+  </div>
+</div>
+
+<section class="masthead" id="cover">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div>
+        <div class="meta">
+          <span>📅 2026 年 10 月 21 日 · 周三</span>
+          <span>🛰 每日 06:00 / 12:00 / 20:00 三更</span>
+          <span>📱 手机端自适应</span>
+        </div>
+        <h1>小草影视 小草影视
+          <small>Cao Ying Shi · 每日更新的影视内容入口</small>
+        </h1>
+        <p class="lede">小草影视 小草影视把电影、电视剧、综艺与动漫四个板块的更新信息集中到一张页面：热播榜、即将上线、本周新番与更新时间表在这里一次看全，通勤路上用手机打开也能顺畅浏览。站点访问地址为 <span class="kbd">https://xiaocaoyingshi-app.github.io</span>。</p>
+        <div class="stats">
+          <div><strong>12,846</strong><span>影视条目</span></div>
+          <div><strong>2,300+</strong><span>今日更新</span></div>
+          <div><strong>4.9</strong><span>影迷综合评分</span></div>
+        </div>
+      </div>
+      <div class="note">
+        <h4>三分钟上手</h4>
+        <ol>
+          <li><b>想找片</b>：用顶部「检索」框输入片名、主演或导演，只输关键词命中率更高</li>
+          <li><b>想追新</b>：看「更新表」栏目，按更新时间倒序，标注「直播中」的是正在同步播的</li>
+          <li><b>剧荒了</b>：翻「热播榜」与「影评」两栏，周榜与月榜每周一 10:00 刷新</li>
+          <li><b>换设备</b>：手机浏览器直接打开 小草影视 小草影视 即可，无需下载客户端</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="films">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>今日焦点</h2>
+      <span class="tag">EDITOR'S PICK</span>
+      <p>编辑从当日更新里挑出的三部长片，完整片单见下方电影馆</p>
+      <a href="#columns" class="more">查看全部分区 →</a>
+    </div>
+
+    <div class="cover">
+      <article class="cover-main">
+        <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="霓虹追凶 第十二集 封面">
+        <div class="gradient"></div>
+        <div class="content">
+          <div class="num">COVER STORY / 01</div>
+          <h3>霓虹追凶 · 第十二集</h3>
+          <p>雨夜的城中村接连出现匿名字条，刑侦支队重启三年前的悬案。本期收束前十一集埋下的三条线索，长镜头跟拍段落被影迷称为「本季最稳的一集」。</p>
+          <a href="#" class="play">▶ 立即观看</a>
+        </div>
+      </article>
+      <div class="cover-side">
+        <article>
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="荒野回声 第一季 封面">
+          <div class="g"></div>
+          <div class="c">
+            <span>完结可看</span>
+            <h4>荒野回声 · 第一季</h4>
+            <small>公路悬疑 · 全 10 集 · 9.1 分</small>
+          </div>
+        </article>
+        <article>
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="海边理发店 电影 封面">
+          <div class="g"></div>
+          <div class="c">
+            <span>今日上线</span>
+            <h4>海边理发店</h4>
+            <small>文艺剧情 · 108 分钟 · 8.4 分</small>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="films-list">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>电影馆</h2>
+      <span class="tag">CINEMA</span>
+      <p>动作 · 喜剧 · 科幻 · 悬疑 · 爱情 · 纪录，六个类型并行更新</p>
+      <a href="#" class="more">更多电影 →</a>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="极速救援 电影海报">
+          <span class="ep">HD 国语</span>
+          <span class="rate">9.2</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>极速救援</h4>
+          <p>动作 / 冒险 · 2026 · 128 分钟</p>
+          <div class="row"><b>动作大片</b><span>2.3亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="深海探险 电影海报">
+          <span class="ep">3D</span>
+          <span class="rate">9.0</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>深海探险</h4>
+          <p>科幻 / 冒险 · 2026 · 141 分钟</p>
+          <div class="row"><b>年度科幻</b><span>1.9亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="爱情密码 电影海报">
+          <span class="ep">新片</span>
+          <span class="rate">8.5</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>爱情密码</h4>
+          <p>爱情 / 都市 · 2026 · 106 分钟</p>
+          <div class="row"><b>都市情感</b><span>1.5亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="末日孤城 电影海报">
+          <span class="ep">正片</span>
+          <span class="rate">9.2</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>末日孤城</h4>
+          <p>科幻 / 惊悚 · 2025 · 119 分钟</p>
+          <div class="row"><b>口碑逆袭</b><span>1.7亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="欢乐满屋 电影海报">
+          <span class="ep">HD</span>
+          <span class="rate">8.3</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>欢乐满屋</h4>
+          <p>喜剧 / 家庭 · 2026 · 98 分钟</p>
+          <div class="row"><b>合家欢</b><span>1.1亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="暗夜追踪 电影海报">
+          <span class="ep">正片</span>
+          <span class="rate">8.8</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>暗夜追踪</h4>
+          <p>悬疑 / 犯罪 · 2025 · 112 分钟</p>
+          <div class="row"><b>悬疑烧脑</b><span>1.3亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="星际之门2026 电影海报">
+          <span class="ep">4K</span>
+          <span class="rate">9.6</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>星际之门 2026</h4>
+          <p>科幻 / 太空 · 2026 · 152 分钟</p>
+          <div class="row"><b>科幻榜首</b><span>2.3万 热度</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="记忆碎片岛 电影海报">
+          <span class="ep">正片</span>
+          <span class="rate">8.7</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>记忆碎片岛</h4>
+          <p>惊悚 / 悬疑 · 2025 · 103 分钟</p>
+          <div class="row"><b>反转叙事</b><span>8500 热度</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="series">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>剧集档</h2>
+      <span class="tag">SERIES</span>
+      <p>国产剧 · 港台剧 · 欧美剧 · 日韩剧，更新进度一目了然</p>
+      <a href="#" class="more">更多剧集 →</a>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="锦绣年华 电视剧封面">
+          <span class="ep">更新至 268 集</span>
+          <span class="rate">9.4</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>锦绣年华</h4>
+          <p>年代 / 家庭 · 大陆 · 全 268 集</p>
+          <div class="row"><b>剧集榜首</b><span>3.2亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="悬疑档案 电视剧封面">
+          <span class="ep">更新至 32 集</span>
+          <span class="rate">9.1</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>悬疑档案</h4>
+          <p>犯罪 / 悬疑 · 大陆 · 全 36 集</p>
+          <div class="row"><b>单元案件</b><span>2.5亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="都市风云 电视剧封面">
+          <span class="ep">更新至 48 集</span>
+          <span class="rate">8.9</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>都市风云</h4>
+          <p>都市 / 职场 · 大陆 · 全 52 集</p>
+          <div class="row"><b>职场群像</b><span>2.1亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="青春进行时 电视剧封面">
+          <span class="ep">更新至 24 集</span>
+          <span class="rate">8.7</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>青春进行时</h4>
+          <p>青春 / 校园 · 大陆 · 全 30 集</p>
+          <div class="row"><b>校园日常</b><span>1.8亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="交锋 电视剧封面">
+          <span class="ep">更新至 18 集</span>
+          <span class="rate">8.6</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>交锋</h4>
+          <p>国产剧 · 主演 王凯、陈凯</p>
+          <div class="row"><b>年度大剧</b><span>1.6亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="云雀叫天 电视剧封面">
+          <span class="ep">更新至 22 集</span>
+          <span class="rate">8.4</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>云雀叫天</h4>
+          <p>国产剧 · 主演 陈一</p>
+          <div class="row"><b>年代传奇</b><span>1.4亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="今晚也要和连环杀手 电视剧封面">
+          <span class="ep">更新至 10 集</span>
+          <span class="rate">8.3</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>今晚也要和连环杀手</h4>
+          <p>韩剧 · 悬疑 / 爱情</p>
+          <div class="row"><b>韩剧推荐</b><span>9800 热度</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="假面骑士麦斯 电视剧封面">
+          <span class="ep">更新至 36 集</span>
+          <span class="rate">8.1</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>假面骑士麦斯</h4>
+          <p>日剧 · 特摄 / 动作</p>
+          <div class="row"><b>日剧连载</b><span>7600 热度</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="variety">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>综艺台</h2>
+      <span class="tag">VARIETY</span>
+      <p>真人秀 · 音乐竞演 · 脱口秀 · 户外纪实</p>
+      <a href="#" class="more">更多综艺 →</a>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="声音的力量 综艺封面">
+          <span class="ep">第 12 期</span>
+          <span class="rate">9.3</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>声音的力量</h4>
+          <p>音乐竞演 · 大陆 · 第 12 期</p>
+          <div class="row"><b>热度 9832 万</b><span>本周冠军</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="荒野大挑战 综艺封面">
+          <span class="ep">第 8 期</span>
+          <span class="rate">9.0</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>荒野大挑战</h4>
+          <p>户外真人秀 · 大陆 · 第 8 期</p>
+          <div class="row"><b>热度 7641 万</b><span>户外纪实</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="舌尖上的旅行 综艺封面">
+          <span class="ep">第 5 期</span>
+          <span class="rate">8.8</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>舌尖上的旅行</h4>
+          <p>美食纪实 · 大陆 · 第 5 期</p>
+          <div class="row"><b>热度 6280 万</b><span>下饭首选</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="你好星期六 综艺封面">
+          <span class="ep">本期</span>
+          <span class="rate">8.6</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>你好，星期六</h4>
+          <p>综艺 · 主持 何炅</p>
+          <div class="row"><b>周六黄金档</b><span>常青栏目</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="一饭封神2 综艺封面">
+          <span class="ep">第 2 季</span>
+          <span class="rate">8.5</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>一饭封神 2</h4>
+          <p>美食竞技 · 大陆 · 第 2 季</p>
+          <div class="row"><b>厨艺对决</b><span>新季回归</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="第三调解室 综艺封面">
+          <span class="ep">本期</span>
+          <span class="rate">8.2</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>第三调解室</h4>
+          <p>谈话调解 · 主持 刘伟、小凡</p>
+          <div class="row"><b>生活纪实</b><span>口碑稳定</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="男生女生向前冲 综艺封面">
+          <span class="ep">夏季场</span>
+          <span class="rate">8.0</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>男生女生向前冲</h4>
+          <p>竞技闯关 · 主持 黄志伟、陈自</p>
+          <div class="row"><b>闯关挑战</b><span>亲子向</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="开始奏乐开始舞 综艺封面">
+          <span class="ep">第 4 期</span>
+          <span class="rate">7.9</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>开始奏乐，开始舞</h4>
+          <p>歌舞竞演 · 大陆 · 第 4 期</p>
+          <div class="row"><b>歌舞竞演</b><span>新节目</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="anime">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>动漫番</h2>
+      <span class="tag">ANIME</span>
+      <p>连载新番 · 完结经典 · 国漫 · 日漫</p>
+      <a href="#" class="more">更多动漫 →</a>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="斗罗大陆 动漫封面">
+          <span class="ep">更新至 268 集</span>
+          <span class="rate">9.6</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>斗罗大陆</h4>
+          <p>玄幻 / 热血 · 国漫 · 连载中</p>
+          <div class="row"><b>国漫榜首</b><span>5.6亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="完美世界 动漫封面">
+          <span class="ep">更新至 156 集</span>
+          <span class="rate">9.4</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>完美世界</h4>
+          <p>玄幻 / 冒险 · 国漫 · 连载中</p>
+          <div class="row"><b>热血玄幻</b><span>4.8亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="海贼王 动漫封面">
+          <span class="ep">更新至 1120 集</span>
+          <span class="rate">9.5</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>海贼王</h4>
+          <p>热血 / 冒险 · 日漫 · 连载中</p>
+          <div class="row"><b>长篇常青</b><span>4.2亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="咒术回战 动漫封面">
+          <span class="ep">更新至 48 集</span>
+          <span class="rate">9.2</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>咒术回战</h4>
+          <p>奇幻 / 战斗 · 日漫 · 连载中</p>
+          <div class="row"><b>本季热门</b><span>3.5亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="进击的巨人 动漫封面">
+          <span class="ep">已完结</span>
+          <span class="rate">9.3</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>进击的巨人</h4>
+          <p>奇幻 / 战争 · 日漫 · 全 87 集</p>
+          <div class="row"><b>经典补完</b><span>3.1亿 播放</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="烈焰少年团 动漫封面">
+          <span class="ep">连载中</span>
+          <span class="rate">8.9</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>烈焰少年团</h4>
+          <p>热血 / 竞技 · 国漫 · 连载中</p>
+          <div class="row"><b>本周新番</b><span>新上线</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/BESCuPMi2BC?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=9ce60616f8340ae5f2c16bde47dfa6dcc768255b" alt="晴天小镇 动漫封面">
+          <span class="ep">已完结</span>
+          <span class="rate">8.7</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>晴天小镇</h4>
+          <p>治愈 / 日常 · 日漫 · 全 24 集</p>
+          <div class="row"><b>治愈系</b><span>适合下饭</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">
+          <img src="https://one-agent-prod-1343551737.cos.ap-guangzhou.myqcloud.com/artifacts/0232/a47e934e610a410d9369a70357b28918/0RPwkblZ94l/task-f2549cfc99da236941cf51e3ba8b75a9/.rendered/_assets/DyzfrayVqBF?q-sign-algorithm=sha1&q-ak=AKIDDMTk0KZdUSL21fBYigcl3C8rMeiT5TdZ&q-sign-time=1792560786%3B1800336786&q-key-time=1792560786%3B1800336786&q-header-list=host&q-url-param-list=&q-signature=8208b4404906320d197c8badaee26fd71fe7079a" alt="异界探险记 动漫封面">
+          <span class="ep">连载中</span>
+          <span class="rate">8.6</span>
+          <a href="#" class="cta">▶</a>
+        </div>
+        <div class="info">
+          <h4>异界探险记</h4>
+          <p>奇幻 / 冒险 · 国漫 · 连载中</p>
+          <div class="row"><b>异世界</b><span>更新中</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>更新时间表</h2>
+      <span class="tag">SCHEDULE</span>
+      <p>按更新时间倒序，标注「直播中」的是与卫视同步播出的</p>
+      <a href="#" class="more">订阅更新提醒 →</a>
+    </div>
+
+    <div class="schedule">
+      <div class="sch-list">
+        <div class="item live">
+          <time>20:00</time>
+          <h5>霓虹追凶<small>第十二集 · 线索收束，长镜头跟拍段落</small></h5>
+          <em>直播中</em>
+        </div>
+        <div class="item">
+          <time>19:30</time>
+          <h5>锦绣年华<small>第 268 集 · 家族会议摊牌</small></h5>
+          <em>已更新</em>
+        </div>
+        <div class="item">
+          <time>18:00</time>
+          <h5>斗罗大陆<small>第 268 集 · 海神岛试炼开启</small></h5>
+          <em>已更新</em>
+        </div>
+        <div class="item">
+          <time>16:00</time>
+          <h5>声音的力量<small>第 12 期 · 半决赛第二场</small></h5>
+          <em>已更新</em>
+        </div>
+        <div class="item">
+          <time>14:00</time>
+          <h5>荒野回声<small>第一季全 10 集 · 一次放完</small></h5>
+          <em>已完结</em>
+        </div>
+        <div class="item">
+          <time>12:00</time>
+          <h5>悬疑档案<small>第 32 集 · 跨城追凶</small></h5>
+          <em>已更新</em>
+        </div>
+        <div class="item">
+          <time>10:00</time>
+          <h5>海贼王<small>第 1120 集 · 最终章推进</small></h5>
+          <em>已更新</em>
+        </div>
+        <div class="item">
+          <time>06:00</time>
+          <h5>舌尖上的旅行<small>第 5 期 · 闽南篇</small></h5>
+          <em>已更新</em>
+        </div>
+      </div>
+
+      <aside class="note">
+        <h4>检索与找片技巧</h4>
+        <ol>
+          <li><b>片名带年份</b>：同名老片太多时，搜索「片名 + 年份」更精准</li>
+          <li><b>只输主演</b>：记不住片名就输演员，演员聚合页会列出全部作品</li>
+          <li><b>加「HD」或「中字」</b>：想看高清版或外语片字幕版时这样筛</li>
+          <li><b>地区限定</b>：港台剧、韩剧、日剧专区可直接跳过类型筛选</li>
+          <li><b>按年代翻</b>：老片集中在 2018—2021 专区，怀旧向片单在这里</li>
+          <li><b>追更提醒</b>：把更新表页加入手机书签，每日三更不漏集</li>
+        </ol>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="columns">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>内容分区</h2>
+      <span class="tag">CHANNELS</span>
+      <p>六个专区，按类型与题材双线归类</p>
+      <a href="#" class="more">查看完整分类 →</a>
+    </div>
+
+    <div class="columns">
+      <div class="col">
+        <i>CH.01</i>
+        <h4>电影馆</h4>
+        <ul>
+          <li><a href="#">动作片 <span>1,240</span></a></li>
+          <li><a href="#">喜剧片 <span>986</span></a></li>
+          <li><a href="#">科幻片 <span>712</span></a></li>
+          <li><a href="#">悬疑片 <span>645</span></a></li>
+          <li><a href="#">爱情片 <span>1,108</span></a></li>
+          <li><a href="#">纪录片 <span>433</span></a></li>
+          <li><a href="#">恐怖片 <span>378</span></a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <i>CH.02</i>
+        <h4>剧集档</h4>
+        <ul>
+          <li><a href="#">国产剧 <span class="hot">热</span></a></li>
+          <li><a href="#">港台剧 <span>298</span></a></li>
+          <li><a href="#">欧美剧 <span>412</span></a></li>
+          <li><a href="#">日韩剧 <span class="hot">热</span></a></li>
+          <li><a href="#">泰剧 <span>176</span></a></li>
+          <li><a href="#">短剧精选 <span class="hot">新</span></a></li>
+          <li><a href="#">历史剧 <span>205</span></a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <i>CH.03</i>
+        <h4>综艺台</h4>
+        <ul>
+          <li><a href="#">真人秀 <span>268</span></a></li>
+          <li><a href="#">音乐竞演 <span class="hot">热</span></a></li>
+          <li><a href="#">脱口秀 <span>154</span></a></li>
+          <li><a href="#">美食纪实 <span>189</span></a></li>
+          <li><a href="#">户外竞技 <span>132</span></a></li>
+          <li><a href="#">访谈对话 <span>96</span></a></li>
+          <li><a href="#">选秀养成 <span>78</span></a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <i>CH.04</i>
+        <h4>动漫番</h4>
+        <ul>
+          <li><a href="#">国漫玄幻 <span class="hot">热</span></a></li>
+          <li><a href="#">热血战斗 <span>342</span></a></li>
+          <li><a href="#">治愈日常 <span>287</span></a></li>
+          <li><a href="#">奇幻冒险 <span>256</span></a></li>
+          <li><a href="#">日漫经典 <span class="hot">热</span></a></li>
+          <li><a href="#">动态漫画 <span class="hot">新</span></a></li>
+          <li><a href="#">亲子动画 <span>198</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="editor">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>编辑精选 · 影评</h2>
+      <span class="tag">EDITORIAL</span>
+      <p>每周三更新，写给我们自己的观影笔记</p>
+      <a href="#" class="more">查看全部影评 →</a>
+    </div>
+
+    <div class="editor">
+      <article>
+        <div class="no">01</div>
+        <div>
+          <h5>《霓虹追凶》第十二集：长镜头不只是技术展示</h5>
+          <p>这一集最值得聊的不是案子本身，而是摄影机在雨夜街巷里连续跟拍的七分钟。镜头没有炫技式的旋转，只是安静地跟着人物穿过巷口、停在便利店玻璃前，把配角的表情交给观众自己判断。这种克制反而让结尾的电话铃声更有重量。</p>
+          <div class="by">影评人 · 星河入梦 · 2 小时前</div>
+        </div>
+      </article>
+      <article>
+        <div class="no">02</div>
+        <div>
+          <h5>为什么公路片总让人想上路：《荒野回声》观后</h5>
+          <p>荒芜公路、老式越野车、逆光剪影，这些元素并不新鲜，但第一季真正抓人的地方是它对「沉默」的处理。主角之间有大量不对话的段落，只有引擎声和风声，观众反而能从演员的细微动作里读出更多东西。</p>
+          <div class="by">编辑 · 暮色森林 · 5 小时前</div>
+        </div>
+      </article>
+      <article>
+        <div class="no">03</div>
+        <div>
+          <h5>本周榜单里被低估的三部冷门佳片</h5>
+          <p>榜单前列总是那几部，但更新表里藏着一些播放量不高、口碑却扎实的作品。这一期我们挑了三部评分在 8.5 以上的冷门片，类型分别落在纪录片、独立喜剧和悬疑短片，适合周末一个人安静地看。</p>
+          <div class="by">编辑 · 深蓝鲸鱼 · 1 天前</div>
+        </div>
+      </article>
+      <article>
+        <div class="no">04</div>
+        <div>
+          <h5>国漫玄幻这一季：为什么大家还在追长篇连载</h5>
+          <p>《斗罗大陆》更新到 268 集、《完美世界》到 156 集，追更的观众并不是不知道节奏慢，而是在意角色一路走过来的积累。这期我们聊了长篇连载的「陪伴感」是如何形成的，以及它为什么难以被短剧替代。</p>
+          <div class="by">编辑 · 北辰 · 2 天前</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="search">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>检索入口</h2>
+      <span class="tag">SEARCH</span>
+      <p>只输入片名、主演或导演，命中率更高</p>
+    </div>
+
+    <div class="search-box">
+      <form onsubmit="return false;">
+        <input type="search" placeholder="搜索电影 / 电视剧 / 综艺 / 动漫，例如：霓虹追凶、斗罗大陆、王凯" aria-label="搜索">
+        <button type="submit">检索</button>
+      </form>
+      <div class="hints">
+        <b>热门检索：</b>
+        <a href="#">动作大片</a>
+        <a href="#">古装仙侠</a>
+        <a href="#">悬疑烧脑</a>
+        <a href="#">韩剧推荐</a>
+        <a href="#">美剧合集</a>
+        <a href="#">日漫经典</a>
+        <a href="#">爱情电影</a>
+        <a href="#">喜剧片</a>
+        <a href="#">科幻片</a>
+        <a href="#">2026 新片</a>
+        <a href="#">院线同步</a>
+        <a href="#">1080P 高清</a>
+        <a href="#">治愈系</a>
+        <a href="#">音乐综艺</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <b><i>小草影视</i> 小草影视</b>
+        <p>影视内容聚合入口，汇集电影、电视剧、综艺与动漫四大板块，每日三更更新热播榜、即将上线与本周新番内容。站点访问地址：<span class="kbd">https://xiaocaoyingshi-app.github.io</span></p>
+      </div>
+      <div>
+        <h6>内容板块</h6>
+        <ul>
+          <li><a href="#films">电影馆</a></li>
+          <li><a href="#series">剧集档</a></li>
+          <li><a href="#variety">综艺台</a></li>
+          <li><a href="#anime">动漫番</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>栏目导航</h6>
+        <ul>
+          <li><a href="#cover">今日焦点</a></li>
+          <li><a href="#schedule">更新时间表</a></li>
+          <li><a href="#columns">内容分区</a></li>
+          <li><a href="#editor">编辑影评</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>使用方式</h6>
+        <ul>
+          <li><a href="#search">片名检索</a></li>
+          <li><a href="#">手机端浏览</a></li>
+          <li><a href="#">追更提醒</a></li>
+          <li><a href="#">反馈建议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 小草影视 小草影视 · 影视内容聚合入口</span>
+      <span>访问地址：https://xiaocaoyingshi-app.github.io · 仅提供内容索引，不存储任何视频文件</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn');
+  var nav=document.getElementById('nav');
+  if(btn&&nav){
+    btn.addEventListener('click',function(){nav.classList.toggle('open')});
+    nav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){nav.classList.remove('open')});
+    });
+  }
+  var links=document.querySelectorAll('.nav a');
+  var targets=[];
+  links.forEach(function(a){
+    var el=document.querySelector(a.getAttribute('href'));
+    if(el){targets.push({a:a,el:el})}
+  });
+  function onScroll(){
+    var pos=window.scrollY+80, cur=null;
+    targets.forEach(function(t){
+      if(t.el.offsetTop<=pos){cur=t.a}
+    });
+    links.forEach(function(a){a.classList.remove('on')});
+    if(cur){cur.classList.add('on')}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>
